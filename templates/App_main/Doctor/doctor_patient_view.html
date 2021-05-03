@@ -1,0 +1,35 @@
+{% extends 'App_main/Doctor/doctor_base.html' %}
+{% block body %}
+    <div class="row" style="margin: 50px 10px;">
+        <div class="col-md-6 market-update-gd">
+            <div class="market-update-block clr-block-1">
+                <a href="{% url 'App_main:DoctorMyPatients' %}">
+                    <div class="col-md-8 market-update-left">
+                        <h3>{{ my_patients_count }}</h3>
+                        <h4>My Admitted Patients</h4>
+                        {#                <p>Approval Required : {{  }}</p>#}
+                    </div>
+                </a>
+                <div class="col-md-4 market-update-right">
+                    <i class="fa fa-user-md"></i>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-md-6 market-update-gd">
+            <div class="market-update-block clr-block-2">
+                <a href="{% url 'App_main:DoctorDischargedPatients' %}">
+                    <div class="col-md-8 market-update-left">
+                        <h3>{{ my_discharged_patients_count }}</h3>
+                        <h4>My Discharged Patients</h4>
+                    </div>
+                    <div class="col-md-4 market-update-right">
+                        <i class="fa fa-user-o"></i>
+                    </div>
+                </a>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+{% endblock %}

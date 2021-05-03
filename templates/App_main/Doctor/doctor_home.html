@@ -1,0 +1,31 @@
+{% extends 'App_main/Doctor/doctor_base.html' %}
+{% block body %}
+    <div class="row" style="margin: 50px 10px;">
+        <div class="col-md-6 market-update-gd">
+            <div class="market-update-block clr-block-1">
+                <div class="col-md-8 market-update-left">
+                    <h3>{{ appointment_count }}</h3>
+                    <h4>Total Appointments</h4>
+                    {#                <p>Approval Required : {{  }}</p>#}
+                </div>
+                <div class="col-md-4 market-update-right">
+                    <i class="fa fa-user-md"></i>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-md-6 market-update-gd">
+            <div class="market-update-block clr-block-2">
+                <div class="col-md-8 market-update-left">
+                    <h3>{{ patient_count }}</h3>
+                    <h4>My Patients</h4>
+                </div>
+                <div class="col-md-4 market-update-right">
+                    <i class="fa fa-user-o"></i>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+{% endblock %}

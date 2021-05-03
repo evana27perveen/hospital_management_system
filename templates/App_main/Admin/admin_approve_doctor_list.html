@@ -1,0 +1,39 @@
+{% extends 'App_main/Admin/admin_base.html' %}
+{% load static %}
+{% block body %}
+    <div class="container" style="margin: 50px 2px!important;">
+        <table class="table table-hover" style="border-radius: 5px; background-color: bisque">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Full Name</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Address</th>
+                <th scope="col">Registration Number</th>
+                <th scope="col">Department</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for dr in doctor %}
+                <tr>
+                    <th>{{ dr.user.first_name }} {{ dr.user.last_name }}</th>
+                    <td>{{ dr.phone_number }}</td>
+                    <td>{{ dr.address }}</td>
+                    <td>{{ dr.reg_num }}</td>
+                    <td>{{ dr.department }}</td>
+                    <td>
+                        <a href="{% url 'App_main:AdminApproveDoctorSuccess' pk=dr.id %}">
+                            <p style="color: #000!important;" class="btn btn-success">Approve</p>
+                        </a>
+
+                        <a href="{% url 'App_main:AdminApproveDoctorReject' pk=dr.id %}">
+                            <p style="color: #000!important;" class="btn btn-danger">Reject</p>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

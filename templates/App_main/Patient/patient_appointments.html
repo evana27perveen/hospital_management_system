@@ -1,0 +1,65 @@
+{% extends 'App_main/Patient/patient_base.html' %}
+{% load static %}
+{% block body %}
+    <style>
+        #myInput {
+            width: 100%;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+    <div id="table_all" class="container" style="margin: 50px 2px!important; text-align: center!important;">
+        <input id="myInput" type="text" placeholder="Search..">
+        <br><br>
+        <table class="table table-hover" style="background-color: cornsilk; border-radius: 10px;">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Doctor</th>
+                <th scope="col">Serial Number</th>
+                <th scope="col">Appointment Date</th>
+                <th scope="col">Approval</th>
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            {% for appointment in appointments %}
+                <tr>
+                    <th>{{ appointment.doctor.user.first_name }} {{ appointment.doctor.user.last_name }}</th>
+                    <td>{{ appointment.serial_number }}</td>
+                    <td>{{ appointment.appointment_date }}</td>
+                    {% if appointment.status == 'True' %}
+                        <td style="color: green">Confirmed</td>
+                    {% else %}
+                        <td style="color: darkred">Pending</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'App_main/Doctor/doctor_base.html' %}
+{% load static %}
+{% block body %}
+    <style>
+        #myInput {
+            width: 100%;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+    <div class="container" style="margin: 50px 2px!important;">
+        <input id="myInput" type="text" placeholder="Search..">
+        <br><br>
+        <table class="table table-hover" style="background-color: cornsilk; border-radius: 10px;">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Full Name</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Address</th>
+                <th scope="col">Symptoms</th>
+                <th scope="col">Admission Date</th>
+                <th scope="col">Release Date</th>
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            {% for patient in discharged_patients %}
+                <tr>
+                    <th>{{ patient.user.first_name }} {{ patient.user.last_name }}</th>
+                    <td>{{ patient.phone_number }}</td>
+                    <td>{{ patient.address }}</td>
+                    <td>{{ patient.symptoms }}</td>
+                    <td>{{ patient.admitDate }}</td>
+                    <td>{{ patient.releaseDate }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+{% endblock %}

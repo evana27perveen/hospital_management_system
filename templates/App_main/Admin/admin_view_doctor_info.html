@@ -1,0 +1,71 @@
+{% extends 'App_main/Admin/admin_base.html' %}
+{% load static %}
+{% block body %}
+    <style>
+        #myInput {
+            width: 100%;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+    <div class="container" style="margin: 50px 2px!important;">
+        <input id="myInput" type="text" placeholder="Search..">
+        <br><br>
+        <table class="table table-hover" style="background-color: cornsilk; border-radius: 10px;">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Full Name</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Address</th>
+                <th scope="col">Registration Number</th>
+                <th scope="col">Department</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            {% for dr in doctors_info %}
+                <tr>
+                    <th>{{ dr.user.first_name }} {{ dr.user.last_name }}</th>
+                    <td>{{ dr.phone_number }}</td>
+                    <td>{{ dr.address }}</td>
+                    <td>{{ dr.reg_num }}</td>
+                    <td>{{ dr.department }}</td>
+                    <td>
+                        <a style="color:#000000;" href="{% url 'App_main:AdminDoctorUpdate' id=dr.id %}">
+                            <img style="width: 20px; height: 20px;"
+                                 src="{% static 'images/icons/edit-button.png' %}" alt="edit">
+                        </a>
+                        <a style="color:#000000;" href="#">
+                            <img style="width: 20px; height: 20px;" src="{% static 'images/icons/remove.png' %}"
+                                 alt="Remove">
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'App_main/Admin/admin_base.html' %}
+{% load static %}
+{% block body %}
+    <div class="container" style="margin: 50px 2px!important;">
+        <table class="table table-hover" style="background-color: cornsilk; border-radius: 10px;">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Department</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Phone Number</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for dr in doctor_by_department %}
+                <tr>
+                    <td>{{ dr.department }}</td>
+                    <th>{{ dr.user.first_name }} {{ dr.user.last_name }}</th>
+                    <td>{{ dr.phone_number }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

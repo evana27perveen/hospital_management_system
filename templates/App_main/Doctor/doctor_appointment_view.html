@@ -1,0 +1,102 @@
+{% extends 'App_main/Doctor/doctor_base.html' %}
+{% load static %}
+{% block body %}
+    <style>
+        #myInput {
+            width: 100%;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+    <div id="table_all" class="container" style="margin: 50px 2px!important; text-align: center!important;">
+        <input id="myInput" type="text" placeholder="Search..">
+        <br><br>
+        <button id="today_btn" class="btn btn-dark btn-lg" onclick="show_today()">Today</button>
+        <br><br>
+        <table class="table table-hover" style="background-color: cornsilk; border-radius: 10px;">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Full Name</th>
+                <th scope="col">Symptoms</th>
+                <th scope="col">Appointment Date</th>
+
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            {% for appointment in my_appointments %}
+                <tr>
+                    <th>{{ appointment.patient.first_name }} {{ appointment.patient.last_name }}</th>
+                    <td>{{ appointment.symptoms }}</td>
+                    <td>{{ appointment.appointment_date }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <div id="table_today" class="container"
+         style="margin: 50px 2px!important; text-align: center!important; display: none">
+        <input id="myInput" type="text" placeholder="Search..">
+        <br><br>
+        <button id="today_btn" class="btn btn-dark btn-lg" onclick="show_all()">All Appointments</button>
+        <br><br>
+        <table class="table table-hover" style="background-color: cornsilk; border-radius: 10px;">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Full Name</th>
+                <th scope="col">Symptoms</th>
+                <th scope="col">Appointment Date</th>
+
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            {% for appointment in appointment_today %}
+                <tr>
+                    <th>{{ appointment.patient.first_name }} {{ appointment.patient.last_name }}</th>
+                    <td>{{ appointment.symptoms }}</td>
+                    <td>{{ appointment.appointment_date }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function show_today() {
+            document.getElementById('table_all').style.display = 'none';
+            document.getElementById('table_today').style.display = 'block';
+
+        }
+
+        function show_all() {
+            document.getElementById('table_today').style.display = 'none';
+            document.getElementById('table_all').style.display = 'block';
+
+
+        }
+    </script>
+{% endblock %}

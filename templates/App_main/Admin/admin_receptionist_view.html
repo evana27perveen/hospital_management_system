@@ -1,0 +1,86 @@
+{% extends 'App_main/Admin/admin_base.html' %}
+{% load static %}
+{% block body %}
+    <style>
+        #myInput {
+            width: 100%;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        a.snapchat {
+            position: relative;
+            background: lightgrey;
+        }
+
+        a.snapchat #img_big {
+            position: absolute;
+            opacity: 0;
+            width: 100px;
+            height: 100px;
+            left: 0;
+            top: -20px;
+            transition: opacity .5s, top .5s;
+        }
+
+        a.snapchat:hover #img_big {
+            opacity: 1;
+            top: 20px;
+        }
+    </style>
+    <div class="container" style="margin: 50px 2px!important;">
+        <input id="myInput" type="text" placeholder="Search..">
+        <br><br>
+        <table class="table table-hover" style="background-color: cornsilk; border-radius: 10px;">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Picture</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Address</th>
+                <th scope="col">Salary</th>
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            {% for rst in receptionist %}
+                <tr>
+                    <td>
+                        <a class="snapchat" style="margin: 5px 5px 0 -2px;" target="_blank" href="#">
+                            <img src="{{ rst.profile_picture.url }}" alt="{{ rst.user.username }}"
+                                 style="width: 30px; height: 20px;" id="img_small">
+                            <img src="{{ rst.profile_picture.url }}" alt="{{ rst.user.username }}" id="img_big">
+                        </a>
+                    </td>
+                    <td>{{ rst.user.first_name }} {{ rst.user.last_name }}</td>
+                    <td>{{ rst.phone_number }}</td>
+                    <td>{{ rst.address }}</td>
+                    <td>{{ rst.salary }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+{% endblock %}

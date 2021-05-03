@@ -1,0 +1,80 @@
+{% extends 'App_main/Admin/admin_base.html' %}
+{% load static %}
+{% block body %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        a:link {
+            text-decoration: none !important;
+            color: #34495e;
+        }
+
+        .card {
+            border-radius: 6px !important;
+            -webkit-box-shadow: 0 2px 3px 0 rgba(4, 26, 55, 0) !important;
+            border: none !important;
+        }
+
+        .card .card-block {
+            padding: 20px;
+        }
+
+        .card-color-blue {
+            background: linear-gradient(45deg, #2085f8, #d2ecf3);
+        }
+
+        .card-color-green {
+            background: linear-gradient(45deg, #128762, #e3f6f5);
+        }
+
+        .card-color-pink {
+            background: linear-gradient(45deg, #e65cea, #ecdbe6);
+        }
+        .card-color-yellow {
+            background: linear-gradient(45deg, #ffb64d, rgba(245, 245, 213, 0.73));
+        }
+    </style>
+    <div class="container" style="margin: 50px 0!important;">
+        <div class="row">
+            <div class="col-md-3 col-xl-3">
+                <div class="card card-color-blue">
+                    <a href="{% url 'App_main:AdminDoctorViewInfo' %}" class="card-block">
+                        <h4>Doctor Info</h4><br>
+                        <img src="{% static 'images/icons/doctor_1.png' %}" style="width: 50px; height: 50px;"
+                             class="text-left" alt="dr">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-xl-3">
+                <div class="card card-color-green">
+                    <a href="{% url 'App_main:AdminDoctorViewAddNewDoctor' %}" class="card-block">
+                        <h4>Add New Doctor</h4><br>
+                        <img src="{% static 'images/icons/doctor_female.png' %}" style="width: 50px; height: 50px;"
+                             class="text-left" alt="dr">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-xl-3">
+                <div class="card card-color-pink">
+                    <a href="{% url 'App_main:AdminApproveDoctor' %}" class="card-block">
+                        <h4>Approve Doctor</h4><br>
+                        <img src="{% static 'images/icons/approved.png' %}" style="width: 50px; height: 50px;"
+                             class="text-left" alt="dr">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-xl-3">
+                <div class="card card-color-yellow">
+                    <a href="{% url 'App_main:AdminSpecialistDoctorView' %}" class="card-block">
+                        <h4>Specialist Doctor</h4><br>
+                        <img src="{% static 'images/icons/doctor_specialist.png' %}" style="width: 50px; height: 50px;"
+                             class="text-left" alt="dr">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'App_main/Patient/patient_base.html' %}
+{% load static %}
+{% block nav %}
+    <style>
+        #profile_img {
+            border-radius: 50%;
+        }
+
+        #name {
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        #department {
+            font-size: 15px;
+        }
+    </style>
+    <div class="container">
+        <img class="img-fluid" src="{{ patient.profile_pic.url }}" alt="fotu" id="profile_img">
+        <br><br>
+        <hr>
+        <div class="row">
+            <div class="col-sm-3">
+                <h6 class="mb-0">Email:</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                <small>{{ patient.user.email }}</small>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-3">
+                <h6 class="mb-0">Phone:</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {{ patient.phone_number }}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-3">
+                <h6 class="mb-0">Address</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                : {{ patient.address }}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-3">
+                <h6 class="mb-0">Age:</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {{ patient.age }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block body %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        a:link {
+            text-decoration: none !important;
+            color: #34495e;
+        }
+
+        .card {
+            border-radius: 6px !important;
+            -webkit-box-shadow: 0 2px 3px 0 rgba(4, 26, 55, 0) !important;
+            border: none !important;
+        }
+
+        .card .card-block {
+            padding: 20px;
+        }
+
+        .card-color-blue {
+            background: linear-gradient(45deg, #2085f8, #d2ecf3);
+        }
+
+        .card-color-green {
+            background: linear-gradient(45deg, #128762, #e3f6f5);
+        }
+
+        .card-color-pink {
+            background: linear-gradient(45deg, #e65cea, #ecdbe6);
+        }
+
+        .card-color-yellow {
+            background: linear-gradient(45deg, #ffb64d, rgba(248, 248, 228, 0.73));
+        }
+    </style>
+    <div class="container" style="margin: 50px 0!important;">
+        <br><br>
+        <div class="row">
+            <div class="col-md-4 col-xl-3">
+                <div class="card card-color-blue">
+                    <a href="{% url 'App_main:PatientAppointments' %}" class="card-block">
+                        <h4>Doctor Visitings</h4><br>
+                        <img src="{% static 'images/icons/doctor_1.png' %}" style="width: 50px; height: 50px;"
+                             class="text-left" alt="dr">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-3">
+                <div class="card card-color-green">
+                    <a href="{% url 'App_main:PatientTakingAppointment' %}" class="card-block">
+                        <h4>Apply for an Appointment</h4><br>
+                        <img src="{% static 'images/icons/doctor_female.png' %}" style="width: 50px; height: 50px;"
+                             class="text-left" alt="dr">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-3">
+                <div class="card card-color-pink">
+                    <a href="{% url 'App_main:PatientFindsDoctors' %}" class="card-block">
+                        <h4>Available Doctors</h4><br>
+                        <img src="{% static 'images/icons/approved.png' %}" style="width: 50px; height: 50px;"
+                             class="text-left" alt="dr">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin: 50px 0!important;">
+        <div class="row">
+            <div class="col-md-4 col-xl-3"></div>
+            <div class="col-md-4 col-xl-3">
+                <div class="card card-color-yellow">
+                    <a href="{% url 'App_main:PatientUpdateProfile' %}" class="card-block">
+                        <h4>Update My Profile</h4><br>
+                        <img src="{% static 'images/icons/doctor_female.png' %}" style="width: 50px; height: 50px;"
+                             class="text-left" alt="dr">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xl-3"></div>
+    </div>
+
+
+    <script type="text/javascript">
+        let inputsare = document.getElementsByTagName('input');
+        inputsare.className = 'form-control';
+    </script>
+
+
+
+{% endblock %}

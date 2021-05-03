@@ -1,0 +1,33 @@
+{% extends 'App_main/Doctor/doctor_base.html' %}
+{% block body %}
+    <style>
+        #profile_img {
+            border-radius: 50%;
+        }
+
+        #name {
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        #department {
+            font-size: 15px;
+        }
+    </style>
+    <div class="container" style="margin: 50px 10px;">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img class="img-fluid" src="{{ doctor_profile.profile_picture.url }}" alt="fotu" id="profile_img">
+                <p id="name">{{ doctor_profile.user.first_name }} {{ doctor_profile.user.last_name }}</p>
+                <small id="department">{{ doctor_profile.department }}</small>
+            </div>
+            <div class="col-md-9">
+                <div><h4>Email: &nbsp;</h4><h5>{{ doctor_profile.user.email }}</h5></div>
+                <div><h4>Phone: &nbsp;</h4><h4>{{ doctor_profile.phone_number }}</h4></div>
+                <div><h4>Address: &nbsp;</h4><h4>{{ doctor_profile.address }}</h4></div>
+                <div><h4>Department: &nbsp;</h4><h4>{{ doctor_profile.department }}</h4></div>
+                <div><h4>Visiting Charge: &nbsp;</h4><h4>{{ doctor_profile.visiting_charge }}</h4></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
